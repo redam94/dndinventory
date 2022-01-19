@@ -1,3 +1,4 @@
 import Homepage from "./Homepage/Homepage"
+import NoCert from "./NoCert/NoCert"
 
-export {Homepage}
+export {Homepage, NoCert}
