@@ -4,8 +4,10 @@ import {useNavigate} from 'react-router-dom';
 
 export default SignUp = () => {
     let navigate = useNavigate();
+    
     const handleSubmit= (event) => {
         console.log(event)
+        event.preventDefault();
         navigate('/')
     }
     return (
