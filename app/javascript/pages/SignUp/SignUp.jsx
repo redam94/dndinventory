@@ -1,8 +1,13 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import {useNavigate} from 'react-router-dom';
 
 export default SignUp = () => {
-    const handleSubmit= (event) => {console.log(event)}
+    let navigate = useNavigate();
+    const handleSubmit= (event) => {
+        console.log(event)
+        navigate('/')
+    }
     return (
         <>
         <h1 className="m-4">Sign Up</h1>

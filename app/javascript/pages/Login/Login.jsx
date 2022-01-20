@@ -1,11 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Form, Button} from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export default Login = () => {
+    let navigate = useNavigate();
+
     const handleSubmit = (event) => {
         console.log(event)
+        event.preventDefault()
+        navigate('/')
     }
-    return (
+    
+    
+    return(
     <>
     <h1 className="m-4">Login</h1>
     <Form className="mx-4" onSubmit={handleSubmit}>
