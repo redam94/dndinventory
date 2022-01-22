@@ -11,7 +11,7 @@ export default CreateCharacter = ({ show, onHide }) => {
     } 
     const handleSubmit = (event) => {
         const form = event.currentTarget;
-        form.checkValidity()
+        
         event.preventDefault();
         event.stopPropagation();
         axios.post('/api/v1/characters', { character: {
@@ -30,6 +30,7 @@ export default CreateCharacter = ({ show, onHide }) => {
                     console.log(isValid);
                 }
             })
+            form.checkValidated();
         
     }
 
