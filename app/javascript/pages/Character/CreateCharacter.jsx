@@ -40,12 +40,11 @@ export default CreateCharacter = ({ show, onHide }) => {
             <Modal.Body>
                 <Form className="my-2" noValidate validated={validated} onSubmit={handleSubmit}>
                     <Form.Group>
-                    <Form.Label>Character Name</Form.Label>
-                    <Form.Control type="text" isInvalid={isValid} value={characterName} onChange={handleChange}/>
-                    <Form.Control.Feedback type="invalid">Invalid Name</Form.Control.Feedback>
+                        <Form.Label>Character Name</Form.Label>
+                        <Form.Control type="text" isInvalid={isValid} value={characterName} onChange={handleChange}/>
+                        <Form.Control.Feedback type="invalid">Invalid Name</Form.Control.Feedback>
                     </Form.Group>
-                
-                <Button className="my-2" variant="secondary" type='submit'>Submit</Button>
+                    <Button className="my-2" variant="secondary" type='submit'>Submit</Button>
                 </Form>
             </Modal.Body>
         </Modal>
