@@ -28,7 +28,7 @@ export default CreateCharacter = ({ show, onHide }) => {
                     setValidated(false)
                 }
             })
-            form.checkValidated();
+            form.checkValidity();
         
     }
 
