@@ -49,14 +49,14 @@ def show
              }
             else render json: { 
                 status: 500,
-                erros: @character.errors.full_messages
+                errors: @character.errors.full_messages
              }
             end
         
         else 
                 render json: {
                 status: 500,
-                errors: "not logged in"
+                errors: ["not logged in"]
             }
         end
 
