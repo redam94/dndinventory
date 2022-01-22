@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 export default About = () => {
 
     return (
-        <div style={{minWidth:'300px'}} className="w-50 m-2 p-2 border rounded shadow">
+        <div style={{minWidth:'300px', minHeight:'500px'}} className="w-50 m-2 p-2 border rounded shadow">
         <h1>D&D Inventory</h1>
         <p style={{textIndent:'20px', fontSize:'18px', fontWeight:'150'}} >
             Worry no more about your inventory troubles. D&D Inventory is here to help you organize your potions, jewels, scrolls, weird hats and other items you may have carelessly strewn about your hole(s).

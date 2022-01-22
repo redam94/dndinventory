@@ -1,3 +1,4 @@
 import Header from "./Header";
+import CharacterCard from "./CharacterCards";
 
-export { Header }
+export { Header, CharacterCard };
