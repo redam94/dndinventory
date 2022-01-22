@@ -33,7 +33,7 @@ const App = () => {
                 <Route path='/' exact element={<Homepage loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>}/>
                 <Route path='/about' exact element={<About/>}/>
                 <Route path='/login' exact element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
-                <Route path='/signup' exact element={<SignUp loggedIn={loggedIn}  setUser={setUser}/>}/>
+                <Route path='/signup' exact element={<SignUp loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
                 {loggedIn && <Route path='/character/:name' exact element={<Test/>}/>}
             </Routes>
         </Router>
