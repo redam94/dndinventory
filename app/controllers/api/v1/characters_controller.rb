@@ -61,6 +61,7 @@ def show
         end
 
       end
+
 private
     
      def character_params

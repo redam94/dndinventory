@@ -28,7 +28,7 @@ const App = () => {
                 <Route path='/about' exact element={<About/>}/>
                 <Route path='/login' exact element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
                 <Route path='/signup' exact element={<SignUp loggedIn={loggedIn}  setUser={setUser}/>}/>
-                <Route path='/create_character' exact element={<h1>Create your character</h1>}/>
+                <Route path='/character/:name' element={<h1>Create your character</h1>}/>
             </Routes>
         </Router>
         </div>

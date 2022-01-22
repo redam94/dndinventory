@@ -21,7 +21,7 @@ export default Login = ({ loggedIn, setLoggedIn, setUser }) => {
             {withCredentials: true}
             ).then((response) => {
                     if(response.status===200){
-                        console.log(response.data)
+    
                         if(response.data?.status === 401){
                             alert(response.data.errors[0])
                             setUserName('')
