@@ -18,7 +18,6 @@ export default CreateCharacter = ({ show, onHide }) => {
             name: characterName
         } }, {withCredentials: true})
             .then((response) => {
-                console.log(response);
                 if(response.data?.status === 'created'){
                     setIsValid(false);
                     setValidated(true);
@@ -27,7 +26,6 @@ export default CreateCharacter = ({ show, onHide }) => {
                 }else{
                     setIsValid(true);
                     setValidated(false)
-                    console.log(isValid);
                 }
             })
             form.checkValidated();
