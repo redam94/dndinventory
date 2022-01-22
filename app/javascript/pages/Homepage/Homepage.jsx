@@ -21,7 +21,8 @@ const CreateCharacterCard = ({onClick}) => {
 export default Homepage = ({ loggedIn }) => {
   let [show, setShow] = useState(false);
   let [characters, setCharacters] = useState([]);
-  useEffect(() => {
+  
+  const getCharacter = () => {
     axios.get('/api/v1/characters', {withCredentials: true})
       .then((response) => {
         if(response.data?.characters){
@@ -29,11 +30,14 @@ export default Homepage = ({ loggedIn }) => {
         }
       })
       .catch((error) => {console.log(error)})
-  }, [])
+  }
+  
+  useEffect(() => getCharacter(), [])
+
   if(loggedIn){
     return(
     <Container className="fluid">
-      <CreateCharacter show={show} onHide={() => setShow(false)}/>
+      <CreateCharacter show={show} onHide={() => {setShow(false); getCharacter();}}/>
       <Row xs={1} md={2} lg={3} className="g-4">
         {characters.map(({id, name}) => {
         return (

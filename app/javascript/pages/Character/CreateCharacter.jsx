@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
+
 import axios from 'axios';
 
 export default CreateCharacter = ({ show, onHide }) => {
@@ -22,7 +23,6 @@ export default CreateCharacter = ({ show, onHide }) => {
                     setIsValid(false);
                     setValidated(true);
                     onHide()
-                    alert("Character Created")
                 }else{
                     setIsValid(true);
                     setValidated(false)
