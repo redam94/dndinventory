@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/logged_in', to: 'sessions#is_logged_in?'
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:create]
+      resources :users, only: [:create, :index]
       resources :items, only: [:create, :show, :destroy, :index]
       resources :characters, only: [:create, :show, :destroy, :index]
     end
