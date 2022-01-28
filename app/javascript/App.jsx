@@ -2,7 +2,7 @@ import { render } from "react-dom";
 import React, {useState, useRef, useEffect} from "react";
 import { BrowserRouter as Router, Routes, Route, useParams } from "react-router-dom";
 import {Header}  from "./pages/components";
-import { Homepage, SignUp, Login, About, CreateItem } from "./pages";
+import { Homepage, SignUp, Login, About, CreateItem, Items } from "./pages";
 import axios from 'axios';
 
 function Test(){
@@ -34,7 +34,8 @@ const App = () => {
                 <Route path='/about' exact element={<About/>}/>
                 <Route path='/login' exact element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
                 <Route path='/signup' exact element={<SignUp loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
-                {loggedIn && <Route path='/character/:name' exact element={<CreateItem/>}/>}
+                <Route path='/character/:name' exact element={<Items/>}/>
+                <Route path='/createitem/:name' exact element={<CreateItem/>}/>
             </Routes>
         </Router>
         </div>
