@@ -66,7 +66,7 @@ export default SignUp = ({ loggedIn, setLoggedIn }) => {
                     onChange={handleChange}
                     isValid={touched.userName && !errors.userName}
                     isInvalid={!!errors.userName}
-                    placeholder="User name"/>
+                    placeholder="Username"/>
                 <Form.Control.Feedback type="invalid">{errors.userName}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="my-4">

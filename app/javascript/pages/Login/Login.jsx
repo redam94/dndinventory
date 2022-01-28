@@ -59,14 +59,14 @@ export default Login = ({ loggedIn, setLoggedIn, setUser }) => {
             <Form.Control type="text" name="userName" value={values.userName} onChange={handleChange}
             isValid={touched.userName && !errors.userName}
             isInvalid={!!errors.userName}
-            placeholder="User name"/>
+            placeholder="Username"/>
             <Form.Control.Feedback type='invalid'>{errors.userName}</Form.Control.Feedback>
         </Form.Group>
         <Form.Group className="my-4">
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" name="password" value={values.password} onChange={handleChange}
             isValid={touched.password && !errors.password}
-            isInvalid={!!errors.password}
+            isInvalid={!!errors.password} placeholder="Password"
             />
             <Form.Control.Feedback type='invalid'>{errors.password}</Form.Control.Feedback>
         </Form.Group>
