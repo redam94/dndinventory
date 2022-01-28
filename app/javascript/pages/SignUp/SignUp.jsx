@@ -2,6 +2,18 @@ import React, {useState, useEffect} from 'react';
 import { Form, Button } from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import { Formik } from 'formik';
+import * as yup from 'yup';
+
+const user_schema = yup.object().shape({
+    userName: yup.string().min(5, "username must be at least 5 characters long.").required("username is required"),
+    password: yup.string().min(5)
+        .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/, 
+            {message:"Password must contain a number and a letter.", excludeEmptyString:true})
+        .required("Password required"),
+    passwordConfirmation: yup.string()
+        .oneOf([yup.ref('password'), null], 'Passwords must match').required("Password required")
+});
 
 export default SignUp = ({ loggedIn, setLoggedIn }) => {
     
@@ -9,69 +21,84 @@ export default SignUp = ({ loggedIn, setLoggedIn }) => {
 
     useEffect(() => {if(loggedIn){navigate('/')}}, [])
     
-    let [userName, setUserName] = useState('');
-    let [password, setPassword] = useState('');
-    let [passwordConfirmation, setPasswordConfirmation] = useState('');
-    let [validated, setValidated] = useState(false);
-
-    const handleSubmit= (event) => {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            navigate('/signup')
-            event.preventDefault();
-            event.stopPropagation();
-        }else{
-            event.preventDefault();
-            axios.post('/api/v1/users', 
-            {user:{username: userName, password: password, password_confirmation: passwordConfirmation}}, 
+    const handleSubmit = (event) => {
+        axios.post('/api/v1/users', 
+            {user: {
+                username: event.userName,
+                password: event.password,
+                password_confirmation: event.passwordConfirmation
+            }},
             {withCredentials: true})
-            .then(responce => {
-                if(responce.status === 200){
-                    if(responce.data.status === 500){
-                        console.log(password.length)
-                        setUserName('')
-                        setPassword('')
-                        setPasswordConfirmation('')
-                    }else if(responce.data.status === 'created'){
-                        setLoggedIn(true)
-                        console.log(responce)
-                        navigate('/')
+            .then((response) => {
+                console.log(response);
+                if(response.status === 200){
+                    if(response.data.status === 500){
+                        alert("username already exists");
+                    }else if(response.data.status === "created"){
+                        setLoggedIn(true);
+                        navigate('/');
                     }
-                    console.log("200",responce)
                 }
             })
-        } setValidated(true)
     }
-
+  
     return (
         <>
         <h1 className="m-4">Sign Up</h1>
-        <Form validated={validated} className="m-4" onSubmit={handleSubmit}>
+        <Formik validationSchema={user_schema} onSubmit={handleSubmit} 
+            initialValues={{userName:"", password:"", passwordConfirmation:""}}>
+            {({
+            handleSubmit,
+            handleChange,
+            handleBlur,
+            values,
+            touched,
+            isValid,
+            errors,    
+            }) => (
+        <Form noValidate className="m-4" onSubmit={handleSubmit}>
             <Form.Group>
                 <Form.Label>User Name</Form.Label>
                 <Form.Control 
-                    required type="text" value={userName} onChange={(event)=>{setUserName(event.target.value); setValidated(true)}}
+                    type="text" 
+                    name="userName"
+                    value={values.userName} 
+                    onChange={handleChange}
+                    isValid={touched.userName && !errors.userName}
+                    isInvalid={!!errors.userName}
                     placeholder="User name"/>
+                <Form.Control.Feedback type="invalid">{errors.userName}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="my-4">
                 <Form.Label>Password</Form.Label>
                 <Form.Control 
-                    required isInvalid={validated && (password.length<5) && !(password === passwordConfirmation)} 
+                    name="password"
                     type="password" 
                     placeholder="Password"
-                    value={password} onChange={(event)=>{setPassword(event.target.value); setValidated(true)}}/>
+                    value={values.password} 
+                    onChange={handleChange}
+                    isValid={touched.password && !errors.password}
+                    isInvalid={!!errors.password}/>
+                <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="my-4">
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control
-                    required 
-                    type="password" placeholder="Confirm Password"
-                    value={passwordConfirmation} onChange={(event)=>{setPasswordConfirmation(event.target.value); setValidated(true)}}/>
+                    name="passwordConfirmation"
+                    type="password" 
+                    placeholder="Confirm Password"
+                    value={values.passwordConfirmation} 
+                    onChange={handleChange}
+                    isValid={touched.passwordConfirmation && !errors.passwordConfirmation}
+                    isInvalid={!!errors.passwordConfirmation}/>
+                <Form.Control.Feedback type="invalid">{errors.passwordConfirmation}</Form.Control.Feedback>
             </Form.Group>
             <Button variant="primary" type="submit">
                 Submit
             </Button>
         </Form>
+            )}
+        </Formik>
         </>
     )
 }
