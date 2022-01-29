@@ -34,8 +34,8 @@ const App = () => {
                 <Route path='/about' exact element={<About/>}/>
                 <Route path='/login' exact element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
                 <Route path='/signup' exact element={<SignUp loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
-                <Route path='/character/:name' exact element={<Items/>}/>
-                <Route path='/createitem/:name' exact element={<CreateItem/>}/>
+                <Route path='/character/:name' exact element={<Items loggedIn={loggedIn}/>}/>
+                <Route path='/createitem/:name' exact element={<CreateItem loggedIn={loggedIn}/>}/>
             </Routes>
         </Router>
         </div>

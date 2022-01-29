@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Form, Button} from 'react-bootstrap';
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 
@@ -64,8 +64,11 @@ const ItemForm = ({ handleSubmit, handleChange, values, errors, touched }) =>{
     )
 };
 
-export default CreateItem = ({ character }) => {
-    let params = useParams();
+export default CreateItem = ({ loggedIn }) => {
+    const params = useParams();
+    const navigate = useNavigate();
+
+    useEffect(() => {loggedIn || navigate('/')}, [loggedIn])
     return (
         <div className="m-4">
             <h1>Add a new item to {params.name}'s inventory</h1>

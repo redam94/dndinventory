@@ -1,21 +1,23 @@
 import React, {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import {Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-export default Items = () => {
-    let params = useParams();
+export default Items = ({ loggedIn }) => {
+    const params = useParams();
+    const navigate = useNavigate();
     let [items, setItems] = useState([{name:"gold"}]);
 
     useEffect(() => {
-        axios.get("/api/v1/items", {useCredentials: true})
+        loggedIn || navigate('/');
+        loggedIn && axios.get("/api/v1/items", {useCredentials: true})
             .then((response) => {
                 if(response.status === 200){
                     console.log(response)
                 }
-            })
-    }, [])
+            });
+    }, [loggedIn])
     return (
         <div className="m-4">
         <h1>{params.name}'s Inventory</h1>
