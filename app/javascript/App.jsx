@@ -21,7 +21,7 @@ const App = () => {
     let [loggedIn, setLoggedIn] = useState(false);
     let [user, setUser] = useState(undefined);
     useEffect(() => {
-    axios.get('/logged_in', {withCredentials: true})
+    axios.get('/api/v1/logged_in', {withCredentials: true})
         .then( responce => {
             //loggedIn.current = 
             setLoggedIn(responce.data?.logged_in)
