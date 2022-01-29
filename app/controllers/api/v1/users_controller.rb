@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
     
     def index
-        @users = User.all
+        @users = User.all.map {|user| user.username}
            if @users
               render json: {
               users: @users
