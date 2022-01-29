@@ -33,7 +33,7 @@ const App = () => {
     
     return (
         <div className='bg-light'>
-        <Router >
+        <Router>
             <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
             <Routes>
                 <Route path='/' exact element={<Homepage loggedIn={loggedIn} setLoggedIn={setLoggedIn} style={mystyle}/>}/>
