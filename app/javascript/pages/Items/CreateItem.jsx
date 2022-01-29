@@ -8,8 +8,8 @@ import * as yup from 'yup';
 const item_schema = yup.object().shape({
     name: yup.string().required("Name required"),
     description: yup.string(),
-    value: yup.number().min(0).default(0),
-    weight: yup.number().min(0).default(0),
+    value: yup.number().required().min(0).default(0),
+    weight: yup.number().required().min(0).default(0),
 });
 
 const ItemForm = ({ handleSubmit, handleChange, values, errors, touched }) =>{
@@ -53,7 +53,7 @@ const ItemForm = ({ handleSubmit, handleChange, values, errors, touched }) =>{
                 <Form.Control 
                     name="value"
                     type="text"
-                    value={values.weight}
+                    value={values.value}
                     onChange={handleChange}
                     isValid={touched.value && !errors.value}
                     isInvalid={!!errors.value} 
