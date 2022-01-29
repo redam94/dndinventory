@@ -42,7 +42,7 @@ const App = () => {
                 <Route path='/about' exact element={<About style={mystyle}/>}/>
                 <Route path='/login' exact element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
                 <Route path='/signup' exact element={<SignUp loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
-                <Route path='/character/:name' exact element={<Items loggedIn={loggedIn}/>}/>
+                <Route path='/character/:name' exact element={<Items loggedIn={loggedIn} style={mystyle}/>}/>
                 <Route path='/createitem/:name' exact element={<CreateItem loggedIn={loggedIn}/>}/>
             </Routes>
         </Router>
