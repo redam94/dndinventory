@@ -54,7 +54,7 @@ export default Homepage = ({ loggedIn, style }) => {
     )
   } else{
     return (
-      <div style={{...style, height: '100vh'}}>
+      <div style={style}>
       <NoCert/>
       </div>
       

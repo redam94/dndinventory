@@ -9,7 +9,8 @@ import image from './assets/portable-hole.png';
 
 const mystyle = {
     display: "flex",
-    height: '100%', 
+    height: '100%',
+    minHeight: '100vh', 
     backgroundSize:'cover', 
     backgroundPosition: 'center', 
     backgroundImage:`url(${image})`, 
@@ -38,7 +39,7 @@ const App = () => {
             <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
             <Routes>
                 <Route path='/' exact element={<Homepage loggedIn={loggedIn} setLoggedIn={setLoggedIn} style={mystyle}/>}/>
-                <Route path='/about' exact element={<About style={{...mystyle, height:'100vh'}}/>}/>
+                <Route path='/about' exact element={<About style={mystyle}/>}/>
                 <Route path='/login' exact element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
                 <Route path='/signup' exact element={<SignUp loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
                 <Route path='/character/:name' exact element={<Items loggedIn={loggedIn}/>}/>
