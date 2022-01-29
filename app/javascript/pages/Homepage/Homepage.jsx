@@ -37,7 +37,7 @@ export default Homepage = ({ loggedIn, style }) => {
 
   if(loggedIn){
     return(
-    <Container className="fluid" >
+    <div className="fluid" style={style}>
       <CreateCharacter show={show} onHide={() => {setShow(false); getCharacter();}}/>
       <Row xs={1} md={2} lg={3} className="g-4">
         {characters.map(({id, name}) => {
@@ -49,12 +49,12 @@ export default Homepage = ({ loggedIn, style }) => {
           <CreateCharacterCard onClick={()=>setShow(true)}/>
         </Col>
       </Row>
-    </Container>
+    </div>
     
     )
   } else{
     return (
-      <div style={style}>
+      <div style={{...style, height: '100vh'}}>
       <NoCert/>
       </div>
       

@@ -9,12 +9,13 @@ import image from './assets/portable-hole.png';
 
 const mystyle = {
     display: "flex",
-    height: '100vh', 
+    height: '100%', 
     backgroundSize:'cover', 
     backgroundPosition: 'center', 
     backgroundImage:`url(${image})`, 
     backgroundRepeat: 'no-repeat',
-    flexDirection: 'column'}
+    flexDirection: 'column',
+    backgroundAttachment: 'local'}
 
 
 const App = () => {
@@ -32,12 +33,12 @@ const App = () => {
     }, [])
     
     return (
-        <div className='bg-light'>
+        <div className='bg-light' style={{height: '100%'}}>
         <Router>
             <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
             <Routes>
                 <Route path='/' exact element={<Homepage loggedIn={loggedIn} setLoggedIn={setLoggedIn} style={mystyle}/>}/>
-                <Route path='/about' exact element={<About style={mystyle}/>}/>
+                <Route path='/about' exact element={<About style={{...mystyle, height:'100vh'}}/>}/>
                 <Route path='/login' exact element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
                 <Route path='/signup' exact element={<SignUp loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
                 <Route path='/character/:name' exact element={<Items loggedIn={loggedIn}/>}/>
