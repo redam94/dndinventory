@@ -30,7 +30,6 @@ export default Items = ({ loggedIn, style }) => {
                     <th>Qty</th>
                     <th>Value(gp)</th>
                     <th>Weight</th>
-                    <th>Description</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +40,6 @@ export default Items = ({ loggedIn, style }) => {
                     <th>{item?.qty}</th>
                     <th>{item?.value || 0}</th>
                     <th>{item?.weight || 0}</th>
-                    <th>{item?.description || ""}</th>
                     </tr>)
         })}
             </tbody>
