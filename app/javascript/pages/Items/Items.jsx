@@ -20,7 +20,7 @@ export default Items = ({ loggedIn, style }) => {
     }, [loggedIn])
     return (
         <div style={style}>
-        <div className="bg-light p-2 m-2 w-75 rounded shadow" style={{minWidth: "500px"}}>
+        <div className="bg-light p-2 m-2 w-75 rounded shadow" style={{minWidth: "350px"}}>
         <h1>{params.name}'s Inventory</h1>
         <Table striped hover bordered className="rounded shadow">
             <thead>
