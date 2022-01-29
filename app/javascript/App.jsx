@@ -4,13 +4,19 @@ import { BrowserRouter as Router, Routes, Route, useParams } from "react-router-
 import {Header}  from "./pages/components";
 import { Homepage, SignUp, Login, About, CreateItem, Items } from "./pages";
 import axios from 'axios';
+import image from './assets/portable-hole.png';
 
-function Test(){
-    let params = useParams();
-    return (
-        <h1 className="m-4">{params.name}</h1>
-    )
-}
+
+const mystyle = {
+    display: "flex",
+    height: '100vh', 
+    backgroundSize:'cover', 
+    backgroundPosition: 'center', 
+    backgroundImage:`url(${image})`, 
+    backgroundRepeat: 'no-repeat',
+    flexDirection: 'column'}
+
+
 const App = () => {
     let [loggedIn, setLoggedIn] = useState(false);
     let [user, setUser] = useState(undefined);
@@ -27,11 +33,11 @@ const App = () => {
     
     return (
         <div className='bg-light'>
-        <Router>
+        <Router >
             <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
             <Routes>
-                <Route path='/' exact element={<Homepage loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>}/>
-                <Route path='/about' exact element={<About/>}/>
+                <Route path='/' exact element={<Homepage loggedIn={loggedIn} setLoggedIn={setLoggedIn} style={mystyle}/>}/>
+                <Route path='/about' exact element={<About style={mystyle}/>}/>
                 <Route path='/login' exact element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
                 <Route path='/signup' exact element={<SignUp loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
                 <Route path='/character/:name' exact element={<Items loggedIn={loggedIn}/>}/>

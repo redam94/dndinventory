@@ -6,6 +6,7 @@ import {CharacterCard} from '../components'
 import CreateCharacter from '../Character/CreateCharacter'
 import axios from 'axios'
 
+
 const CreateCharacterCard = ({onClick}) => {
   return (
     <Card className="m-2 rounder shadow" style={{width: '18rem', height: '18rem'}}>
@@ -18,7 +19,7 @@ const CreateCharacterCard = ({onClick}) => {
   )
 }
 
-export default Homepage = ({ loggedIn }) => {
+export default Homepage = ({ loggedIn, style }) => {
   let [show, setShow] = useState(false);
   let [characters, setCharacters] = useState([]);
   
@@ -36,7 +37,7 @@ export default Homepage = ({ loggedIn }) => {
 
   if(loggedIn){
     return(
-    <Container className="fluid">
+    <Container className="fluid" >
       <CreateCharacter show={show} onHide={() => {setShow(false); getCharacter();}}/>
       <Row xs={1} md={2} lg={3} className="g-4">
         {characters.map(({id, name}) => {
@@ -53,7 +54,10 @@ export default Homepage = ({ loggedIn }) => {
     )
   } else{
     return (
+      <div style={style}>
       <NoCert/>
+      </div>
+      
     )
   }
 }
