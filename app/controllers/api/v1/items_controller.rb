@@ -1,7 +1,8 @@
 class Api::V1::ItemsController < ApplicationController
     
     def index
-        @items = Item.all
+        character_id = Character.find_by(name: params[:id], user_id: current_user.id)[:id]
+        @items = Item.all.select {|item| item.character_id == character_id}
            if @items
               render json: {
               items: @items
@@ -28,7 +29,9 @@ def show
       end
       
       def create
-         @item = Item.new(item_params)
+         name, description, weight, qty = item_params.values_at(:name, :description, :weight, :qty)
+         character_id = Character.find_by(name: params[:id], user_id: current_user.id).id
+         @item = Item.new({name: name, description: description, weight: weight, qty: qty, character_id: character_id})
              if @item.save && logged_in?
                  render json: {
                  status: :created,
@@ -43,7 +46,7 @@ def show
       end
 private
       
-     def user_params
-         params.require(:item).permit(:name, :description, :weight, :qty, :character_id, :container_id)
+     def item_params
+         params.require(:item).permit(:name, :description, :weight, :qty)
      end
 end

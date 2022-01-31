@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, only: [:create, :index]
-      resources :items, only: [:create, :show, :destroy, :index]
+      get '/items/:id', to: 'items#index'
+      post '/items/:id', to: 'items#create'
       resources :characters, only: [:create, :show, :destroy, :index]
     end
   end

@@ -3,12 +3,12 @@ import {Form, Button} from 'react-bootstrap';
 import {useParams, useNavigate} from 'react-router-dom';
 import {Formik} from 'formik';
 import * as yup from 'yup';
-
+import axios from 'axios';
 
 const item_schema = yup.object().shape({
     name: yup.string().required("Name required"),
     description: yup.string(),
-    value: yup.number().required().min(0).default(0),
+    qty: yup.number().required().min(1).default(1),
     weight: yup.number().required().min(0).default(0),
 });
 
@@ -49,11 +49,11 @@ const ItemForm = ({ handleSubmit, handleChange, values, errors, touched }) =>{
                     isInvalid={!!errors.weight}/>
             </Form.Group>
             <Form.Group>
-                <Form.Label>Item Value(gp)</Form.Label>
+                <Form.Label>Quantity</Form.Label>
                 <Form.Control 
-                    name="value"
+                    name="qty"
                     type="text"
-                    value={values.value}
+                    value={values.qty}
                     onChange={handleChange}
                     isValid={touched.value && !errors.value}
                     isInvalid={!!errors.value} 
@@ -67,13 +67,27 @@ const ItemForm = ({ handleSubmit, handleChange, values, errors, touched }) =>{
 export default CreateItem = ({ loggedIn }) => {
     const params = useParams();
     const navigate = useNavigate();
-
+    const handleSubmit = (data) => {
+        axios.post('/api/v1/items/'+params.name, { item: {
+            "name": data.name,
+            "qty": data.qty,
+            "weight": data.weight,
+            "description": data.description,
+        }}, {useCredentials: true}).then(res => {
+            if(res.data.status === "created"){
+                navigate('/character/'+params.name)
+            }else{
+                alert("Something went wrong. Please try again")
+                console.log(res)
+            }
+        })
+    }
     useEffect(() => {loggedIn || navigate('/')}, [loggedIn])
     return (
         <div className="m-4">
             <h1>Add a new item to {params.name}'s inventory</h1>
-            <Formik validationSchema={item_schema} onSubmit={console.log} 
-            initialValues={{name:"", weight:0, value:0, description:""}}>
+            <Formik validationSchema={item_schema} onSubmit={handleSubmit} 
+            initialValues={{name:"", weight:0, qty:1, description:""}}>
                 {ItemForm}
             </Formik>
         </div>

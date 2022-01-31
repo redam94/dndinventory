@@ -11,9 +11,10 @@ export default Items = ({ loggedIn, style }) => {
 
     useEffect(() => {
         loggedIn || navigate('/');
-        loggedIn && axios.get("/api/v1/items", {useCredentials: true})
+        loggedIn && axios.get("/api/v1/items/"+params.name, {useCredentials: true})
             .then((response) => {
                 if(response.status === 200){
+                    setItems(response.data.items)
                     console.log(response)
                 }
             });
