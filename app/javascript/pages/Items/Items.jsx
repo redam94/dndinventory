@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useLayoutEffect} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 import {Button, Table} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
@@ -7,9 +7,16 @@ import axios from 'axios';
 export default Items = ({ loggedIn, style }) => {
     const params = useParams();
     const navigate = useNavigate();
-    let [items, setItems] = useState([{name:"gold", qty: 20, value: 1*20, weight: 1*20, description: "fungible token"}]);
+    let [items, setItems] = useState([
+        {
+        name: '', 
+        qty: 0, 
+        value: 0, 
+        weight: 0, 
+        description: ""
+    }]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         loggedIn || navigate('/');
         loggedIn && axios.get("/api/v1/items/"+params.name, {useCredentials: true})
             .then((response) => {

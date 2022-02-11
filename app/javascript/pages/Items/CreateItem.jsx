@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {useParams, useNavigate} from 'react-router-dom';
 import {Formik} from 'formik';
@@ -12,7 +12,7 @@ const item_schema = yup.object().shape({
     weight: yup.number().required().min(0).default(0),
 });
 
-const ItemForm = ({ handleSubmit, handleChange, values, errors, touched }) =>{
+const ItemForm = ({ handleSubmit, handleChange, values, errors, touched })=>{
     return (
         <Form noValidate onSubmit={handleSubmit}>
             <Form.Group>
@@ -82,7 +82,7 @@ export default CreateItem = ({ loggedIn }) => {
             }
         })
     }
-    useEffect(() => {loggedIn || navigate('/')}, [loggedIn])
+    useLayoutEffect(() => {loggedIn || navigate('/')}, [loggedIn])
     return (
         <div className="m-4">
             <h1>Add a new item to {params.name}'s inventory</h1>
