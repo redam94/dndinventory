@@ -10,6 +10,7 @@ const item_schema = yup.object().shape({
     description: yup.string(),
     qty: yup.number().required().min(1).default(1),
     weight: yup.number().required().min(0).default(0),
+    value: yup.number().required().min(0).default(0)
 });
 
 const ItemForm = ({ handleSubmit, handleChange, values, errors, touched })=>{
@@ -49,6 +50,17 @@ const ItemForm = ({ handleSubmit, handleChange, values, errors, touched })=>{
                     isInvalid={!!errors.weight}/>
             </Form.Group>
             <Form.Group>
+                <Form.Label>Item Value</Form.Label>
+                <Form.Control
+                    name="value"
+                    type="text"
+                    placeholder={0}
+                    value={values.value}
+                    onChange={handleChange}
+                    isValid={touched.value && !errors.value}
+                    isInvalid={!!errors.value}/>
+            </Form.Group>
+            <Form.Group>
                 <Form.Label>Quantity</Form.Label>
                 <Form.Control 
                     name="qty"
@@ -73,6 +85,7 @@ export default CreateItem = ({ loggedIn }) => {
             "qty": data.qty,
             "weight": data.weight,
             "description": data.description,
+            "value": data.value,
         }}, {useCredentials: true}).then(res => {
             if(res.data.status === "created"){
                 navigate('/character/'+params.name)
