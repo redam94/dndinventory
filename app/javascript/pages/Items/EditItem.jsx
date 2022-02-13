@@ -4,8 +4,8 @@ import { getItemById } from '../../actions/api';
 import { item_init, item_schema } from '../../schema/items';
 import ItemForm from './ItemForm'
 import {Formik} from 'formik';
-import axios from 'axios';
-import {editItem} from '../../actions/api'
+import {Button} from 'react-bootstrap';
+import {editItem, deleteItem} from '../../actions/api'
 
 export default EditItem = ({loggedIn}) => {
     const params = useParams();
@@ -27,7 +27,10 @@ export default EditItem = ({loggedIn}) => {
 
     return (
         <div className="m-4">
+            <div style={{display:"flex", flexDirection:'col'}}>
             <h1>Edit {item.name}</h1>
+            <Button className="mx-4" style={{height: '3rem'}} variant="danger" onClick={() => {deleteItem(params.id); navigate('/character/'+params.name)}}>Delete</Button>
+            </div>
         <Formik 
             enableReinitialize
             validationSchema={item_schema} 

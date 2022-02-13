@@ -45,8 +45,7 @@ export default Items = ({ loggedIn, style }) => {
             <tbody>
         {items.map((item, index) => {
             return (
-                
-                <tr key={index} onClick={handleClick(item)}>
+                    <tr key={index} onClick={handleClick(item)}>
                     <th>{index}</th>
                     <th>{item?.name}</th>
                     <th>{item?.qty}</th>

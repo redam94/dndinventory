@@ -51,3 +51,7 @@ export const createItem = (data, name) => {
         "value": data.value,
     }}, {useCredentials: true})
 }
+
+export const deleteItem = (id) => {
+    return axios.delete(`/api/v1/items/destroy/${id}`, { useCredentials: true})
+}
