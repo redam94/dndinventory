@@ -2,6 +2,7 @@ import React, {useEffect, useLayoutEffect} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 import {Formik} from 'formik';
 import { item_schema } from '../../schema/items';
+import {createItem} from '../../actions/api';
 import axios from 'axios';
 import ItemForm from './ItemForm';
 
@@ -9,13 +10,7 @@ export default CreateItem = ({ loggedIn }) => {
     const params = useParams();
     const navigate = useNavigate();
     const handleSubmit = (data) => {
-        axios.post('/api/v1/items/'+params.name, { item: {
-            "name": data.name,
-            "qty": data.qty,
-            "weight": data.weight,
-            "description": data.description,
-            "value": data.value,
-        }}, {useCredentials: true}).then(res => {
+        createItem(data, params.name).then(res => {
             if(res.data.status === "created"){
                 navigate('/character/'+params.name)
             }else{

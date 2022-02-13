@@ -5,21 +5,16 @@ import { item_init, item_schema } from '../../schema/items';
 import ItemForm from './ItemForm'
 import {Formik} from 'formik';
 import axios from 'axios';
+import {editItem} from '../../actions/api'
 
 export default EditItem = ({loggedIn}) => {
     const params = useParams();
     const navigate = useNavigate();
 
     const [item, setItem] = useState(item_init);
-
+    
     const handleSubmit = (data) => {
-        axios.put(`/api/v1/items/${params.id}`, { item: {
-            "name": data.name,
-            "qty": data.qty,
-            "weight": data.weight,
-            "description": data.description,
-            "value": data.value,
-        }}, {useCredentials: true}).then(res => {
+        editItem(data, params.id).then(res => {
             if(res.data.status === "created"){
                 navigate('/character/'+params.name)
             }else{

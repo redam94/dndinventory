@@ -32,3 +32,22 @@ export const getItemById = async (id, loggedIn) => {
     }
 }
 
+export const editItem = async (data, id) => {
+        return axios.put(`/api/v1/items/${id}`, { item: {
+            "name": data.name,
+            "qty": data.qty,
+            "weight": data.weight,
+            "description": data.description,
+            "value": data.value,
+        }}, {useCredentials: true})
+}
+
+export const createItem = (data, name) => {
+    return axios.post(`/api/v1/items/${name}`, { item: {
+        "name": data.name,
+        "qty": data.qty,
+        "weight": data.weight,
+        "description": data.description,
+        "value": data.value,
+    }}, {useCredentials: true})
+}
