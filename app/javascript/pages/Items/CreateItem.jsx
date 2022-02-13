@@ -1,9 +1,8 @@
-import React, {useEffect, useLayoutEffect} from 'react';
+import React, {useLayoutEffect} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 import {Formik} from 'formik';
 import { item_schema } from '../../schema/items';
 import {createItem} from '../../actions/api';
-import axios from 'axios';
 import ItemForm from './ItemForm';
 
 export default CreateItem = ({ loggedIn }) => {

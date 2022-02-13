@@ -49,8 +49,8 @@ export default Items = ({ loggedIn, style }) => {
                     <th>{index}</th>
                     <th>{item?.name}</th>
                     <th>{item?.qty}</th>
-                    <th>{item?.value || 0}</th>
-                    <th>{item?.weight || 0}</th>
+                    <th>{item?.value/1000 || 0}</th>
+                    <th>{item?.weight/1000 || 0}</th>
                     </tr>
                 )
         })}

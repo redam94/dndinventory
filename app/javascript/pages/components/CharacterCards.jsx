@@ -5,12 +5,12 @@ import { getCharacterItemsByName } from '../../actions/api';
 
 
 const calcWealth = (items) => {
-    const total_wealth = items.reduce((acc, item) => acc += item?.value*item?.qty || 0, 0)
+    const total_wealth = items.reduce((acc, item) => acc += item?.value*item?.qty/1000 || 0, 0)
     return total_wealth
 }
 
 const calcWeight = (items) => {
-    const total_weight = items.reduce((acc, item) => acc += item?.weight || 0, 0)
+    const total_weight = items.reduce((acc, item) => acc += item?.weight*item?.qty/1000 || 0, 0)
     return total_weight
 }
 

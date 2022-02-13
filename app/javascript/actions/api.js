@@ -32,26 +32,42 @@ export const getItemById = async (id, loggedIn) => {
     }
 }
 
-export const editItem = async (data, id) => {
+export const editItemById = async (data, id) => {
         return axios.put(`/api/v1/items/${id}`, { item: {
             "name": data.name,
             "qty": data.qty,
-            "weight": data.weight,
+            "weight": data.weight*1000,
             "description": data.description,
-            "value": data.value,
+            "value": data.value*1000,
         }}, {useCredentials: true})
 }
 
-export const createItem = (data, name) => {
+export const createItem = async (data, name) => {
     return axios.post(`/api/v1/items/${name}`, { item: {
         "name": data.name,
         "qty": data.qty,
-        "weight": data.weight,
+        "weight": data.weight*1000,
         "description": data.description,
-        "value": data.value,
+        "value": data.value*1000,
     }}, {useCredentials: true})
 }
 
-export const deleteItem = (id) => {
+export const deleteItemById = async (id) => {
     return axios.delete(`/api/v1/items/destroy/${id}`, { useCredentials: true})
+}
+
+export const createCharacter = async (data) => {
+    return axios.post('/api/v1/characters', { character: {
+        name: data
+    } }, {withCredentials: true})
+}
+
+export const editCharacterById = async (id, data) => {
+    return axios.put(`/api/v1/character/${id}`, { character: {
+        name: data
+    }}, {withCredentials: true})
+}
+
+export const deleteCharacterById = async (id) => {
+    return axios.delete(`/api/v1/characters/destroy/${id}`, {withCredentials: true})
 }
