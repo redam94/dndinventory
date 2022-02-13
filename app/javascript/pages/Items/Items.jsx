@@ -9,12 +9,14 @@ export default Items = ({ loggedIn, style }) => {
     const navigate = useNavigate();
     let [items, setItems] = useState([
         {
+        id:0,
         name: '', 
         qty: 0, 
         value: 0, 
         weight: 0, 
         description: ""
     }]);
+    const handleClick = (item) => {return () => navigate(`/item/${params.name}/${item.id}/edit`)};
 
     useEffect(() => {
         loggedIn || navigate('/');
@@ -42,17 +44,21 @@ export default Items = ({ loggedIn, style }) => {
             </thead>
             <tbody>
         {items.map((item, index) => {
-            return (<tr key={index}>
+            return (
+                
+                <tr key={index} onClick={handleClick(item)}>
                     <th>{index}</th>
                     <th>{item?.name}</th>
                     <th>{item?.qty}</th>
                     <th>{item?.value || 0}</th>
                     <th>{item?.weight || 0}</th>
-                    </tr>)
+                    </tr>
+                )
         })}
             </tbody>
         </Table>
-        <Button className="w-50" variant="primary" as={Link} to={"/createitem/"+params.name}>Add Item</Button>
+        <Button className="w-25 mx-2" variant="primary" as={Link} to={"/createitem/"+params.name}>Add Item</Button>
+        <Button className="w-25 mx-2" variant='secondary' as={Link} to={"/"}>Back to Characters</Button>
         </div>
         </div>
     )

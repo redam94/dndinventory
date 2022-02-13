@@ -60,6 +60,13 @@ class Api::V1::ItemsController < ApplicationController
        }
        end
       end
+
+      def destroy
+        @item = Item.find(params[:id])
+        if logged_in?
+            @item.destroy
+        end
+    end
 private
       
      def item_params

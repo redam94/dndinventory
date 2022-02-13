@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:create, :index]
       get '/items/:id', to: 'items#index'
+      get '/items/show/:id', to: 'items#show'
       post '/items/:id', to: 'items#create'
+      delete '/items/destroy/:id', to: 'items#destroy'
+      put '/items/:id', to: 'items#update'
       resources :characters, only: [:create, :show, :destroy, :index]
     end
   end

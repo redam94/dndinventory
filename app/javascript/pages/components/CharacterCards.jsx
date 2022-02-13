@@ -5,7 +5,7 @@ import { getCharacterItemsByName } from '../../actions/api';
 
 
 const calcWealth = (items) => {
-    const total_wealth = items.reduce((acc, item) => acc += item?.value || 0, 0)
+    const total_wealth = items.reduce((acc, item) => acc += item?.value*item?.qty || 0, 0)
     return total_wealth
 }
 

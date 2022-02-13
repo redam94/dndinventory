@@ -5,7 +5,7 @@ import {Header}  from "./pages/components";
 import { Homepage, SignUp, Login, About, CreateItem, Items } from "./pages";
 import axios from 'axios';
 import image from './assets/portable-hole.png';
-
+import EditItem from './pages/Items/EditItem';
 
 const mystyle = {
     display: "flex",
@@ -18,6 +18,14 @@ const mystyle = {
     flexDirection: 'column',
     backgroundAttachment: 'local'}
 
+const Test = () => {
+    params = useParams();
+    return(
+        <div>
+            <h1>Editing item {params.id}</h1>
+        </div>
+    )
+}
 
 const App = () => {
     let [loggedIn, setLoggedIn] = useState(false);
@@ -31,7 +39,7 @@ const App = () => {
 
         })
         .catch(err => console.log(err))
-    }, [])
+    }, [loggedIn])
     
     return (
         <div className='bg-light' style={{height: '100%'}}>
@@ -43,6 +51,7 @@ const App = () => {
                 <Route path='/login' exact element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
                 <Route path='/signup' exact element={<SignUp loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser}/>}/>
                 <Route path='/character/:name' exact element={<Items loggedIn={loggedIn} style={mystyle}/>}/>
+                <Route path='/item/:name/:id/edit' exact element={<EditItem loggedIn={loggedIn}/>}/>
                 <Route path='/createitem/:name' exact element={<CreateItem loggedIn={loggedIn}/>}/>
             </Routes>
         </Router>
