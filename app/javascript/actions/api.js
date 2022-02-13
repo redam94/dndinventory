@@ -63,7 +63,7 @@ export const createCharacter = async (data) => {
 }
 
 export const editCharacterById = async (id, data) => {
-    return axios.put(`/api/v1/character/${id}`, { character: {
+    return axios.put(`/api/v1/characters/${id}`, { character: {
         name: data
     }}, {withCredentials: true})
 }

@@ -62,6 +62,50 @@ def show
 
       end
 
+      def delete
+        if logged_in?
+         @character = Character.find(params[:id])
+             if @character.destroy
+                 render json: {
+                 status: 'deleted',
+             }
+            else render json: { 
+                status: 500,
+             }
+            end
+        
+        else 
+                render json: {
+                status: 500,
+                errors: ["not logged in"]
+            }
+        end
+
+      end
+
+      def update
+        if logged_in?
+         @character = Character.find(params[:id])
+             if @character.update(item_params)
+                 render json: {
+                 status: :created,
+                 character: @character
+             }
+            else render json: { 
+                status: 500,
+                errors: @character.errors.full_messages
+             }
+            end
+        
+        else 
+                render json: {
+                status: 500,
+                errors: ["not logged in"]
+            }
+        end
+
+      end
+
 private
     
      def character_params

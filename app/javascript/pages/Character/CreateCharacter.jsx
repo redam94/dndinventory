@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { CharacterForm } from './CharacterForm'
 import { character_init } from '../../schema/characters';
-import axios from 'axios';
+import {createCharacter} from '../../actions/api';
 
 export default CreateCharacter = ({ show, onHide }) => {
-    const onSubmit = (event) => {
-        axios.post('/api/v1/characters', { character: {
-            name: event.characterName
-        } }, {withCredentials: true})
+    
+    const onSubmit = ({characterName}) => {
+
+        createCharacter(characterName)
             .then((response) => {
                 if(response.data?.status === 'created'){
                     onHide()
@@ -16,6 +16,7 @@ export default CreateCharacter = ({ show, onHide }) => {
                     alert("Character not created")
                 }
             })
+
     }; 
 
     return (

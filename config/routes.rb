@@ -10,7 +10,11 @@ Rails.application.routes.draw do
       post '/items/:id', to: 'items#create'
       delete '/items/destroy/:id', to: 'items#destroy'
       put '/items/:id', to: 'items#update'
-      resources :characters, only: [:create, :show, :destroy, :index]
+      put '/characters/:id', to: 'characters#update'
+      delete '/characters/destroy/:id', to: 'characters#delete'
+      post '/characters', to: 'characters#create'
+      get '/characters', to: 'characters#index'
+      
     end
   end
   root 'homepage#index'
