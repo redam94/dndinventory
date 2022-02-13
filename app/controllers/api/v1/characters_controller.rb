@@ -86,9 +86,9 @@ def show
       def update
         if logged_in?
          @character = Character.find(params[:id])
-             if @character.update(item_params)
+             if @character.update(character_params)
                  render json: {
-                 status: :created,
+                 status: "created",
                  character: @character
              }
             else render json: { 
