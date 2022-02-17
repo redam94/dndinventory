@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, cloneElement} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 import {Button, OverlayTrigger, Table, Popover} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 
-const Wrapper = ({children}) => {
+const Wrapper = ({children, item}) => {
     return(
         <>
-            {children}
+            {children.map(child => cloneElement(child, {onClick: ()=>item.description && alert(item.description)}))}
         </>
     )
 }
@@ -54,7 +54,7 @@ export default Items = ({ loggedIn, style }) => {
             </thead>
             <tbody>
         {items.map((item, index) => {
-            const onClick = () => {}
+            
             return (
                     <tr key={item.id} >
                     <th style={{fontWeight: 100}} onClick={handleClick(item)}>
