@@ -5,13 +5,13 @@ import { getCharacterItemsByName } from '../../actions/api';
 import EditCharacter from '../Character/EditCharacter';
 
 const calcWealth = (items) => {
-    const total_wealth = items.reduce((acc, item) => acc += item?.value*item?.qty/1000 || 0, 0)
-    return total_wealth
+    const total_wealth = items.reduce((acc, item) => acc += item?.value*item?.qty || 0, 0)
+    return total_wealth/1000
 }
 
 const calcWeight = (items) => {
-    const total_weight = items.reduce((acc, item) => acc += item?.weight*item?.qty/1000 || 0, 0)
-    return total_weight
+    const total_weight = items.reduce((acc, item) => acc += item?.weight*item?.qty|| 0, 0)
+    return total_weight/1000
 }
 
 export default CharacterCard = ({getCharacter, name, id}) => {
@@ -38,7 +38,7 @@ export default CharacterCard = ({getCharacter, name, id}) => {
         <Card className="m-2 rounded shadow" style={{width:'18rem', height:'18rem'}}>
             <Card.Header onClick={()=>setShow(true)}>{name}</Card.Header>
             <Card.Body>
-                {<Card.Text>This is currently carrying {weight}lbs of items.</Card.Text>}
+                {<Card.Text>{name} is currently carrying {weight}lbs of items.</Card.Text>}
                 {<Card.Text>The combined value of all valuables is {wealth}gp.</Card.Text>}
             </Card.Body>
             <Button variant="secondary" as={Link} to={charPath}>View Inventory</Button>
