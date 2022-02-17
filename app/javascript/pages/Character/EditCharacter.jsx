@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { CharacterForm } from './CharacterForm';
 import { editCharacterById, deleteCharacterById } from '../../actions/api';
 
-export default EditCharacter = ({id, show, onHide, name}) => {
-    const onSubmit = ({characterName}) => {
+export default EditCharacter = ({ id, show, onHide, name }) => {
+    const onSubmit = ({ characterName }) => {
         editCharacterById(id, characterName)
             .then(response => {
-                if(response.data?.status === 'created'){
+                if (response.data?.status === 'created') {
                     onHide();
-                }else{
+                } else {
                     alert("Character not Editted")
                 }
             })
     };
-    const onClick = ()=>{
+    const onClick = () => {
         deleteCharacterById(id)
-            .then(response => response.data.status === 'deleted' ? onHide():alert("Character not Deleted"));
+            .then(response => response.data.status === 'deleted' ? onHide() : alert("Character not Deleted"));
     }
     return (
         <Modal show={show} onHide={onHide} size='lg' centered>
@@ -27,7 +27,7 @@ export default EditCharacter = ({id, show, onHide, name}) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <CharacterForm initialValues={{characterName: name}} onSubmit={onSubmit}/>
+                <CharacterForm initialValues={{ characterName: name }} onSubmit={onSubmit} />
             </Modal.Body>
         </Modal>
     )

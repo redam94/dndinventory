@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from 'react'
-import { Card, Button, Container, Row, Col } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react'
+import { Card, Button, Row, Col } from 'react-bootstrap'
 import { NoCert } from '..'
-import {CharacterCard} from '../components'
+import { CharacterCard } from '../components'
 import CreateCharacter from '../Character/CreateCharacter'
 import axios from 'axios'
 
 
-const CreateCharacterCard = ({onClick}) => {
+const CreateCharacterCard = ({ onClick }) => {
   return (
-    <Card className="m-2 rounder shadow" style={{width: '18rem', height: '18rem'}}>
+    <Card className="m-2 rounder shadow" style={{ width: '18rem', height: '18rem' }}>
       <Card.Header>Create New Character</Card.Header>
       <Card.Body>
         <Card.Text>Click to add a new character below.</Card.Text>
@@ -23,40 +23,41 @@ export default Homepage = ({ loggedIn, style }) => {
   const [characters, setCharacters] = useState([]);
 
   const getCharacter = () => {
-    axios.get('/api/v1/characters', {withCredentials: true})
+    axios.get('/api/v1/characters', { withCredentials: true })
       .then((response) => {
-        if(response.data?.characters){
+        if (response.data?.characters) {
           setCharacters(response.data?.characters)
         }
       })
-      .catch((error) => {console.log(error)})
+      .catch((error) => { console.log(error) })
   }
-  
+
   useEffect(() => getCharacter(), [])
 
-  if(loggedIn){
-    return(
-    <div className="fluid" style={style}>
-      <CreateCharacter show={show} onHide={() => {setShow(false); getCharacter();}}/>
-      <Row xs={1} md={2} lg={3} className="g-4">
-        {characters.map(({id, name}) => {
-        return (
-        <Col key={id} align="center">
-          <CharacterCard getCharacter={getCharacter} id={id} name={name} weight="30" wealth="40"/>
-        </Col>)})}
-        <Col align="center">
-          <CreateCharacterCard onClick={()=>setShow(true)}/>
-        </Col>
-      </Row>
-    </div>
-    
+  if (loggedIn) {
+    return (
+      <div className="fluid" style={style}>
+        <CreateCharacter show={show} onHide={() => { setShow(false); getCharacter(); }} />
+        <Row xs={1} md={2} lg={3} className="g-4">
+          {characters.map(({ id, name }) => {
+            return (
+              <Col key={id} align="center">
+                <CharacterCard getCharacter={getCharacter} id={id} name={name} weight="30" wealth="40" />
+              </Col>)
+          })}
+          <Col align="center">
+            <CreateCharacterCard onClick={() => setShow(true)} />
+          </Col>
+        </Row>
+      </div>
+
     )
-  } else{
+  } else {
     return (
       <div style={style}>
-      <NoCert/>
+        <NoCert />
       </div>
-      
+
     )
   }
 }

@@ -30,7 +30,7 @@ export const getItemById = async (id, loggedIn) => {
                 }
             })
     }
-}
+};
 
 export const editItemById = async (data, id) => {
         return axios.put(`/api/v1/items/${id}`, { item: {
@@ -40,7 +40,7 @@ export const editItemById = async (data, id) => {
             "description": data.description,
             "value": data.value*1000,
         }}, {useCredentials: true})
-}
+};
 
 export const createItem = async (data, name) => {
     return axios.post(`/api/v1/items/${name}`, { item: {
@@ -50,24 +50,24 @@ export const createItem = async (data, name) => {
         "description": data.description,
         "value": data.value*1000,
     }}, {useCredentials: true})
-}
+};
 
 export const deleteItemById = async (id) => {
     return axios.delete(`/api/v1/items/destroy/${id}`, { useCredentials: true})
-}
+};
 
 export const createCharacter = async (data) => {
     return axios.post('/api/v1/characters', { character: {
         name: data
     } }, {withCredentials: true})
-}
+};
 
 export const editCharacterById = async (id, data) => {
     return axios.put(`/api/v1/characters/${id}`, { character: {
         name: data
     }}, {withCredentials: true})
-}
+};
 
 export const deleteCharacterById = async (id) => {
     return axios.delete(`/api/v1/characters/destroy/${id}`, {withCredentials: true})
-}
+};
