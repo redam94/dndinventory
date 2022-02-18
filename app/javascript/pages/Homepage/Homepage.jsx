@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Card, Button, Row, Col } from 'react-bootstrap'
 import { NoCert } from '..'
-import { CharacterCard } from '../components'
-import CreateCharacter from '../Character/CreateCharacter'
-import axios from 'axios'
+import { CreateCharacter, CharacterCard } from '../Character'
+import { getCharacters } from '../../actions/api'
 
 
 const CreateCharacterCard = ({ onClick }) => {
@@ -23,13 +22,13 @@ export default Homepage = ({ loggedIn, style }) => {
   const [characters, setCharacters] = useState([]);
 
   const getCharacter = () => {
-    axios.get('/api/v1/characters', { withCredentials: true })
+    getCharacters()
       .then((response) => {
         if (response.data?.characters) {
           setCharacters(response.data?.characters)
         }
       })
-      .catch((error) => { console.log(error) })
+      .catch((error) => {  })
   }
 
   useEffect(() => getCharacter(), [])

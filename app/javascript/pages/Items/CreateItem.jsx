@@ -14,7 +14,6 @@ export default CreateItem = ({ loggedIn }) => {
                 navigate('/character/' + params.name)
             } else {
                 alert("Something went wrong. Please try again")
-                console.log(res)
             }
         })
     }

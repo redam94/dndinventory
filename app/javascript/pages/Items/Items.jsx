@@ -36,7 +36,6 @@ export default Items = ({ loggedIn, style }) => {
             .then((response) => {
                 if (response.status === 200) {
                     setItems(response.data.items)
-                    console.log(response)
                 }
             });
     }, [loggedIn])

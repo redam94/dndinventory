@@ -71,3 +71,7 @@ export const editCharacterById = async (id, data) => {
 export const deleteCharacterById = async (id) => {
     return axios.delete(`/api/v1/characters/destroy/${id}`, {withCredentials: true})
 };
+
+export const getCharacters = async () => {
+    return axios.get('/api/v1/characters', { withCredentials: true })
+};

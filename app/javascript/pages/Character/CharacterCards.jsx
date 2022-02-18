@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getCharacterItemsByName } from '../../actions/api';
-import EditCharacter from '../Character/EditCharacter';
+import EditCharacter from './EditCharacter';
 
 const calcWealth = (items) => {
     const total_wealth = items.reduce((acc, item) => acc += item?.value * item?.qty || 0, 0)

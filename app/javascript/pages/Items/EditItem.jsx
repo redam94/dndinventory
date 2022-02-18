@@ -18,7 +18,6 @@ export default EditItem = ({ loggedIn }) => {
                 navigate('/character/' + params.name)
             } else {
                 alert("Something went wrong. Please try again")
-                console.log(res)
             }
         })
     }, [params.id, params.name]);
@@ -32,7 +31,6 @@ export default EditItem = ({ loggedIn }) => {
         getItemById(params.id, true)
             .then(item => {
                 setItem(item);
-                console.log('item', item);
             })
     }, [loggedIn]);
 

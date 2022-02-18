@@ -42,7 +42,7 @@ export default Login = ({ loggedIn, setLoggedIn, setUser }) => {
                 }
             }
         })
-            .catch((error) => { console.log(error) })
+            .catch((error) => { })
 
     }
 
