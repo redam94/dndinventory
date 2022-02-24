@@ -16,11 +16,15 @@ const user_schema = yup.object().shape({
 });
 
 export default SignUp = ({ loggedIn, setLoggedIn }) => {
+    // Handless SignUp form and process
+    // Todo: Move form out of signup handling and move api call to api.js
 
     let navigate = useNavigate();
 
+    //If we are already signed in push state back to homepage
     useEffect(() => { if (loggedIn) { navigate('/') } }, [])
 
+    //Handles form submit Pushes logged in users back to homepage
     const handleSubmit = (event) => {
         axios.post('/api/v1/users',
             {
@@ -32,7 +36,7 @@ export default SignUp = ({ loggedIn, setLoggedIn }) => {
             },
             { withCredentials: true })
             .then((response) => {
-                console.log(response);
+                //Handle api response alert if response is valid and user not created 
                 if (response.status === 200) {
                     if (response.data.status === 500) {
                         alert("username already exists");
