@@ -74,4 +74,15 @@ export const deleteCharacterById = async (id) => {
 
 export const getCharacters = async () => {
     return axios.get('/api/v1/characters', { withCredentials: true })
+        .then( (res) => {
+            if(res.status === 200){
+                return res.data?.characters || []
+            }else{
+                return []
+            }
+        })
 };
+
+export const getCharactersByParty = async (party)  => {
+    return axios.get(`/api/v1/characters/party/${party}`, { withCredentials: true })
+}

@@ -23,10 +23,8 @@ export default Homepage = ({ loggedIn, style }) => {
 
   const getCharacter = () => {
     getCharacters()
-      .then((response) => {
-        if (response.data?.characters) {
-          setCharacters(response.data?.characters)
-        }
+      .then((characters) => { 
+        setCharacters(characters) 
       })
       .catch((error) => {  })
   }
