@@ -1,24 +1,15 @@
-# README
+# DND Inventory 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Project Description
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Project Goals
+- [x] Allow users to sign up
+- [x] Allow users to add their characters
+- [x] Allow users to keep track of the weight and value of items in their inventory
+  - [x] Display character cards with weight and value of inventory
+  - [x] List Items
+  - [x] Allow users to edit and add items
+- [ ] Allow users to form parties
+- [ ] Allow party members to trade and steal items
+- [ ] Allow dm access to party inventory
+## How to Use
